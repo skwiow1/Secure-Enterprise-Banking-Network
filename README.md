@@ -14,19 +14,27 @@ A robust, enterprise-grade network infrastructure designed and simulated using *
 ## 🏗 Network Topology & Architecture
 
 The architecture segregates the banking infrastructure into three primary logical zones, utilizing dedicated routing nodes to mimic real-world financial data separation:
-┌───────────────┐
-              │  Head Office  │ (LAN: 192.168.10.0/24)
-              │   HO-Router   │
-              └───────┬───────┘
-                      │
-        ┌─────────────┴─────────────┐
-        │ WAN: 10.0.0.0/8           │ WAN: 11.0.0.0/8
-        ▼                           ▼
-┌───────────────┐           ┌───────────────┐
-│   Branch 1    │           │   Branch 2    │
-│   BR-Router   │           │  BR2-Router0  │
-└───────────────┘           └───────────────┘
-(LAN: 192.168.20.0/24)      (LAN: 192.168.30.0/24)
+## 📁 Network Topology & Architecture
+
+The architecture segregates the banking infrastructure into three primary locations:
+
+```text
+              +-------------+
+              | Head Office |  (LAN: 192.168.10.0/24)
+              |  HO-Router  |
+              +------+------+
+                     |
+                     |
+       +-------------+-------------+
+       |                           |
+       | WAN: 10.0.0.0/8           | WAN: 11.0.0.0/8
+       v                           v
++--------------+            +--------------+
+|   Branch 1   |            |   Branch 2   |
+|  BR-Router   |            | BR2-Router0  |
++--------------+            +--------------+
+
+ (LAN: 192.168.20.0/24)   (LAN: 192.168.30.0/24)
 1.  **Head Office (HO):** The central hub managing high-level business systems (HO-Manager, HO-Server) and transactional endpoints (HO-Teller, HO-ATM).
 2.  **Branch 1 (BR):** A standard remote branch environment supporting local administrative personnel and customer banking services.
 3.  **Branch 2 (BR2):** An expanded micro-branch deployment mapped dynamically into the wider enterprise system routing tables.
