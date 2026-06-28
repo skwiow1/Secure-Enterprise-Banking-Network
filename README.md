@@ -17,29 +17,25 @@ The architecture segregates the banking infrastructure into three primary logica
 ## 📁 Network Topology & Architecture
 
 The architecture segregates the banking infrastructure into three primary locations:
+## 🏗 Network Topology & Architecture
 
-`
-              +-------------+
-              | Head Office |  (LAN: 192.168.10.0/24)
-              |  HO-Router  |
-              +------+------+
-                     |
-                     |
-       +-------------+-------------+
-       |                           |
-       | WAN: 10.0.0.0/8           | WAN: 11.0.0.0/8
-       v                           v
-+--------------+            +--------------+
-|   Branch 1   |            |   Branch 2   |
-|  BR-Router   |            | BR2-Router0  |
-+--------------+            +--------------+
+The architecture segregates the banking infrastructure into three primary logical zones, utilizing dedicated routing nodes to mimic real-world financial data separation:
 
- (LAN: 192.168.20.0/24)   (LAN: 192.168.30.0/24)
+```mermaid
+graph TD
+    %% Nodes
+    HO[Central Head Office<br>LAN: 192.168.10.0/24]
+    BR1[Branch 1<br>LAN: 192.168.20.0/24]
+    BR2[Branch 2<br>LAN: 192.168.30.0/24]
 
-1.  **Head Office (HO):** The central hub managing high-level business systems (HO-Manager, HO-Server) and transactional endpoints (HO-Teller, HO-ATM).
-2.  **Branch 1 (BR):** A standard remote branch environment supporting local administrative personnel and customer banking services.
-3.  **Branch 2 (BR2):** An expanded micro-branch deployment mapped dynamically into the wider enterprise system routing tables.
+    %% Connections
+    HO ---|WAN Link: 10.0.0.0/8| BR1
+    HO ---|WAN Link: 11.0.0.0/8| BR2
 
+    %% Styling
+    style HO fill:#1f4e79,stroke:#000,stroke-width:2px,color:#fff
+    style BR1 fill:#2e75b6,stroke:#000,stroke-width:1px,color:#fff
+    style BR2 fill:#2e75b6,stroke:#000,stroke-width:1px,color:#fff
 ---
 
 ## 📊 IP Addressing & Subnetting Schema
